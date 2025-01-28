@@ -97,7 +97,11 @@ public class Main {
         System.out.println(10!=9);
         //Diferente de
 
-        //OPERADORES LOGICOS
+
+
+
+
+        // 6. OPERADORES LOGICOS
         int x=3;
 
         System.out.println(x<5 && x>10); //FALSE
