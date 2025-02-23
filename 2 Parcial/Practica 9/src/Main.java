@@ -12,7 +12,7 @@ public class Main {
         int op;
 
         do {
-            // Mostrar el menú con JOptionPane
+            
             String opcion = JOptionPane.showInputDialog(
                     "BIENVENIDO, SELECCIONE LA OPERACIÓN A REALIZAR:\n" +
                             "1. DATOS GENERALES\n" +
