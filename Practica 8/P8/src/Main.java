@@ -20,6 +20,7 @@ public class Main {
         MasterChief.mostrarInfo();
         MasterChief.getNombre();
         System.out.println(MasterChief.getNombre());
+
         //CREAMOS EL SEGUNDO OBJETO
         Spartan NobleSix = new Spartan("Noble Six",30,25,"Pistola de Plasma");
 
