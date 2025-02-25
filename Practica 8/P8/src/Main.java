@@ -3,13 +3,8 @@ public class Main {
     public static void main(String[] args) {
 
         //CREAMOS EL PRIMER OBJETO
-        Spartan MasterChief = new Spartan();
+        Spartan MasterChief = new Spartan("John", 100,70,"Rifle de Asalto");
 
-        //USAR ATRIBUTOS
-        MasterChief.nombre = "John";
-        MasterChief.salud = 100;
-        MasterChief.escudo = 140;
-        MasterChief.armaPrincipal = "Rifle de asalto";
 
         //INVOCAMOS LOS METODOS
         MasterChief.mostrarInfo();
@@ -17,14 +12,16 @@ public class Main {
         MasterChief.recargarArma(75);
         MasterChief.correr(true);
 
-        //CREAMOS EL SEGUNDO OBJETO
-        Spartan NobleSix = new Spartan();
+//INTENTO DE USO DE UN METODO PRIVADO
+        //MasterChief.consultaCortana();
 
-        //ATRIBUTOS
-        NobleSix.nombre = "Noble Six";
-        NobleSix.salud = 150;
-        NobleSix.escudo = 20;
-        NobleSix.armaPrincipal = "Pistola de Plasma";
+        //USAMOS GET Y SET PARA CAMBIAR ATRIBUTO NOMBRE
+        MasterChief.setNombre("CESAR");
+        MasterChief.mostrarInfo();
+        MasterChief.getNombre();
+        System.out.println(MasterChief.getNombre());
+        //CREAMOS EL SEGUNDO OBJETO
+        Spartan NobleSix = new Spartan("Noble Six",30,25,"Pistola de Plasma");
 
         //METODOS
         NobleSix.mostrarInfo();
