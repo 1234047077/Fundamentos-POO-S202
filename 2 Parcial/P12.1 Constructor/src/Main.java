@@ -22,6 +22,7 @@ public class Main {
         JOptionPane.showMessageDialog(null, "FORTALEZA: " + fortaleza, "FORTALEZA", JOptionPane.INFORMATION_MESSAGE);
     }
 
+
     public static int validarLongitud(String entrada) {
         int longitud = 8; // Valor por defecto
         if (entrada != null && !entrada.isEmpty()) {
