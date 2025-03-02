@@ -1,4 +1,3 @@
-
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -21,7 +20,6 @@ public class Main {
         String fortaleza = generador.comprobarFortaleza(contrasena);
         JOptionPane.showMessageDialog(null, "FORTALEZA: " + fortaleza, "FORTALEZA", JOptionPane.INFORMATION_MESSAGE);
     }
-
 
     public static int validarLongitud(String entrada) {
         int longitud = 8; // Valor por defecto
