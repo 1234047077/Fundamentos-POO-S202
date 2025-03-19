@@ -1,0 +1,20 @@
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+        int op;
+        do {
+            String [] opciones = {"Registrar empleado", "Mostrar empleados", "Salir"};
+            op = JOptionPane.showOptionDialog(null, "Seleccione una opcion", "Menu", 0, 3, null, opciones, 0);
+            switch (op) {
+                case 0:
+        }
+
+
+
+
+    }
+}
