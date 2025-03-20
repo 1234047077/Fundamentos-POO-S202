@@ -58,9 +58,9 @@ public class FromRegistro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtcorreo = new javax.swing.JTextField();
+        txtcontrasena = new javax.swing.JTextField();
+        txtnombree = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +105,17 @@ public class FromRegistro extends javax.swing.JFrame {
         });
 
         btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        txtnombree.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,9 +139,9 @@ public class FromRegistro extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)))
+                            .addComponent(txtcorreo)
+                            .addComponent(txtcontrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                            .addComponent(txtnombree)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jLabel1)))
@@ -146,15 +157,15 @@ public class FromRegistro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnombree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -166,8 +177,43 @@ public class FromRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        // 1. Obtener los valores de los txt
+        String Nombre = txtnombree.getText();
+        String Correo = txtcorreo.getText();
+        String Contrasena = txtcontrasena.getText();
+   // 2. Validar que no envíe vacíos a BD
+    if (Nombre.isEmpty() || Correo.isEmpty() || Contrasena.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "TODOS LOS CAMPOS SON OBLIGATORIOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // 3. EJECUTAMOS EL INSERT
+    UserCRUD crud = new UserCRUD();
+    boolean status = crud.crearUsuario(Nombre, Correo, Contrasena); 
+
+    // 4. NOTIFICAMOS STATUS DEL INSERT
+    if (status) {
+        JOptionPane.showMessageDialog(this, "Usuario Guardado", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "No se guardó", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    limpiarCampos();
     }//GEN-LAST:event_btnGuardarActionPerformed
+    private void limpiarCampos(){
+        txtnombree.setText("");
+        txtcorreo.setText("");
+        txtcontrasena.setText("");
+        
+    }
+    private void txtnombreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreeActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtnombreeActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,9 +267,9 @@ public class FromRegistro extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txtcontrasena;
+    private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextArea txtnombre;
+    private javax.swing.JTextField txtnombree;
     // End of variables declaration//GEN-END:variables
 }
