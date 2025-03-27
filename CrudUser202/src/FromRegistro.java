@@ -87,7 +87,7 @@ public class FromRegistro extends javax.swing.JFrame {
         txtnombre.setRows(5);
         jScrollPane6.setViewportView(txtnombre);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("REGISTRO DE USUARIOS");
 
