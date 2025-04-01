@@ -86,6 +86,51 @@ public class UserCRUD {
     }
 }
 
+     public boolean moverAEliminados(int id) {
+        
+        String selectQuery = "SELECT * FROM usuarios WHERE id = ?";
+        String insertQuery = "INSERT INTO usuarios_eliminados (id, nombre, correo, contraseña, fecha_eliminacion) VALUES (?, ?, ?, ?, NOW())";
+        String deleteQuery = "DELETE FROM usuarios WHERE id = ?";
+        
+        try {
+            
+            PreparedStatement psSelect = conexion.prepareStatement(selectQuery);
+            psSelect.setInt(1, id);
+            ResultSet rs = psSelect.executeQuery();
+            
+            if (rs.next()) {
+               
+                PreparedStatement psInsert = conexion.prepareStatement(insertQuery);
+                psInsert.setInt(1, rs.getInt("ID"));
+                psInsert.setString(2, rs.getString("Nombre"));
+                psInsert.setString(3, rs.getString("Correo"));
+                psInsert.setString(4, rs.getString("Contraseña"));
+                psInsert.executeUpdate();
+                
+               
+                PreparedStatement psDelete = conexion.prepareStatement(deleteQuery);
+                psDelete.setInt(1, id);
+                return psDelete.executeUpdate() > 0;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.out.println("Error al mover usuario a eliminados: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public ResultSet obtenerUsuariosEliminados() {
+        String query = "SELECT id, nombre, correo, contraseña, fecha_eliminacion FROM usuarios_eliminados";
+        
+        try {
+            PreparedStatement ps = conexion.prepareStatement(query);
+            return ps.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Error al cargar usuarios eliminados: " + e.getMessage());
+            return null;
+        }
+    }
+
  
  
  
